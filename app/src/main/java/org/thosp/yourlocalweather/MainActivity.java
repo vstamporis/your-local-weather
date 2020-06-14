@@ -230,13 +230,6 @@ public class MainActivity extends BaseActivity
 
     @Override
     protected void onDestroy() {
-
-        try {
-            Class<?> emmaRTClass = Class.forName("com.vladium.emma.rt.RT");
-            Method dumpCoverageMethod = emmaRTClass.getMethod("dumpCoverageData", File.class, boolean.class, boolean.class);
-            dumpCoverageMethod.invoke(null, new File("sdcard/coverage.exec"), true, false);
-        } catch (Exception e) {}
-
         super.onDestroy();
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
@@ -1118,5 +1111,15 @@ public class MainActivity extends BaseActivity
             weatherForecastServiceLock.unlock();
         }
         sendMessageToWeatherForecastService(location.getId());
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        try {
+            Class<?> emmaRTClass = Class.forName("com.vladium.emma.rt.RT");
+            Method dumpCoverageMethod = emmaRTClass.getMethod("dumpCoverageData", File.class, boolean.class, boolean.class);
+            dumpCoverageMethod.invoke(null, new File("sdcard/coverage.exec"), true, false);
+        } catch (Exception e) {}
     }
 }
