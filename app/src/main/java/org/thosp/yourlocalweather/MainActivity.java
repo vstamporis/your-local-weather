@@ -63,6 +63,8 @@ import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WindWithUnit;
 import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
+import java.io.File;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -228,6 +230,13 @@ public class MainActivity extends BaseActivity
 
     @Override
     protected void onDestroy() {
+
+        try {
+            Class<?> emmaRTClass = Class.forName("com.vladium.emma.rt.RT");
+            Method dumpCoverageMethod = emmaRTClass.getMethod("dumpCoverageData", File.class, boolean.class, boolean.class);
+            dumpCoverageMethod.invoke(null, new File("sdcard/coverage.exec"), true, false);
+        } catch (Exception e) {}
+
         super.onDestroy();
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
