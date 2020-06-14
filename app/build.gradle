@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.github.triplet.play'
 apply plugin: 'gr.aueb.android.barista-plugin'
+apply plugin: 'jacoco'
 
 android {
     playAccountConfigs {
@@ -44,6 +45,7 @@ android {
                     outputFileName = "YourLocationWeather-${variant.name}.apk"
                 }
             }
+            testCoverageEnabled true
         }
     }
 }
@@ -65,4 +67,27 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:3.2.4'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}
+
+task jacocoTestReport(type: JacocoReport) {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = ['**/R.class',
+                      '**/R$*.class',
+                      '**/BuildConfig.*',
+                      '**/Manifest*.*',
+                      '**/*Test*.*',
+                      'android/**/*.*',
+                      '**/data/models/*']
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/javac/debug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = fileTree(dir: "$project.rootDir", includes: [
+            "coverage.exec"
+    ])
 }
