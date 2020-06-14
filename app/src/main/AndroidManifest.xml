@@ -45,6 +45,9 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
+            <intent-filter>
+                <category android:name="android.intent.category.MONKEY" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".SearchActivity"
@@ -52,6 +55,7 @@
             android:parentActivityName=".LocationsActivity">
             <intent-filter>
                 <action android:name="org.thosp.yourlocalweather.action.ADDRESS_RESOLUTION_RESULT" />
+                <category android:name="android.intent.category.MONKEY" />
             </intent-filter>
 
             <meta-data
@@ -65,6 +69,9 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
+            <intent-filter>
+                <category android:name="android.intent.category.MONKEY" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".VoiceSettingsActivity"
@@ -73,6 +80,9 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
+            <intent-filter>
+                <category android:name="android.intent.category.MONKEY" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".VoiceLanguageOptionsActivity"
@@ -81,6 +91,9 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".VoiceSettingsActivity"/>
+            <intent-filter>
+                <category android:name="android.intent.category.MONKEY" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".AddVoiceSettingActivity"
@@ -89,6 +102,9 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".VoiceSettingsActivity"/>
+            <intent-filter>
+                <category android:name="android.intent.category.MONKEY" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".WeatherForecastActivity"
@@ -98,6 +114,9 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
+            <intent-filter>
+                <category android:name="android.intent.category.MONKEY" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".GraphsActivity"
@@ -106,6 +125,9 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
+            <intent-filter>
+                <category android:name="android.intent.category.MONKEY" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".LicenseActivity"
@@ -114,6 +136,8 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.MONKEY" />
+
                 <data
                     android:pathPrefix="/android_asset/licenses/"
                     android:scheme="file"/>
@@ -123,6 +147,9 @@
             android:name="org.thosp.yourlocalweather.help.HelpActivity"
             android:label="@string/label_activity_help"
             android:parentActivityName=".MainActivity" >
+            <intent-filter>
+                <category android:name="android.intent.category.MONKEY" />
+            </intent-filter>
         </activity>
         <activity
             android:name="org.thosp.yourlocalweather.WidgetSettingsDialogue"
@@ -130,6 +157,9 @@
             android:excludeFromRecents="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             >
+            <intent-filter>
+                <category android:name="android.intent.category.MONKEY" />
+            </intent-filter>
         </activity>
 
         <receiver android:name=".receiver.StartupReceiver">
