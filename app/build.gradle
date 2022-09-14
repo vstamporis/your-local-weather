@@ -85,9 +85,10 @@ task jacocoTestReport(type: JacocoReport) {
     def debugTree = fileTree(dir: "${buildDir}/intermediates/javac/debug", excludes: fileFilter)
     def mainSrc = "${project.projectDir}/src/main/java"
 
-    sourceDirectories = files([mainSrc])
-    classDirectories = files([debugTree])
-    executionData = fileTree(dir: "$project.rootDir", includes: [
+    getSourceDirectories().setFrom(files([mainSrc]))
+    getClassDirectories().setFrom(files([debugTree]))
+    getExecutionData().setFrom(fileTree(dir: "$project.rootDir", includes: [
             "coverage.exec"
-    ])
+    ]))
+
 }

@@ -10,15 +10,15 @@ config3 = "configs/fuzzer3.properties"
 
 jacocoReport = "gradlew.bat jacocoTestReport"
 
-command1_monkey = "gradlew.bat clean startMonkeyDebug --events=\"2500\" --throttle=\"200\" --epochs=\"3\" --config=\"" + config1 + "\""
-command2_monkey = "gradlew.bat clean startMonkeyDebug --events=\"2500\" --throttle=\"200\" --epochs=\"3\" --config=\"" + config2 + "\""
-command3_monkey = "gradlew.bat clean startMonkeyDebug --events=\"2500\" --throttle=\"200\" --epochs=\"3\" --config=\"" + config3 + "\""
+command1_monkey = "gradlew.bat clean startMonkey --events=\"2500\" --throttle=\"200\" --epochs=\"30\" --config=\"" + config1 + "\""
+command2_monkey = "gradlew.bat clean startMonkey --events=\"2500\" --throttle=\"200\" --epochs=\"3\" --config=\"" + config2 + "\""
+command3_monkey = "gradlew.bat clean startMonkey --events=\"2500\" --throttle=\"200\" --epochs=\"3\" --config=\"" + config3 + "\""
 
-command1 = "gradlew.bat clean startBaristaFuzzerDebug --events=\"2500\" --throttle=\"200\" --epochs=\"3\" --config=\"" + config1 + "\""
-command2 = "gradlew.bat clean startBaristaFuzzerDebug --events=\"2500\" --throttle=\"200\" --epochs=\"3\" --config=\"" + config2 + "\""
-command3 = "gradlew.bat clean startBaristaFuzzerDebug --events=\"2500\" --throttle=\"200\" --epochs=\"3\" --config=\"" + config3 + "\""
+command1 = "gradlew.bat clean startBaristaFuzzer --events=\"2500\" --throttle=\"200\" --epochs=\"30\" --config=\"" + config1 + "\""
+command2 = "gradlew.bat clean startBaristaFuzzer --events=\"2500\" --throttle=\"200\" --epochs=\"3\" --config=\"" + config2 + "\""
+command3 = "gradlew.bat clean startBaristaFuzzer --events=\"2500\" --throttle=\"200\" --epochs=\"3\" --config=\"" + config3 + "\""
 
-commands = [command1, command1_monkey, command2, command2_monkey, command3, command3_monkey]
+commands = [command1, command1, command1, command1, command1, command1, command1, command1, command1, command1, command1_monkey, command1_monkey, command1_monkey, command1_monkey, command1_monkey, command1_monkey, command1_monkey, command1_monkey, command1_monkey, command1_monkey]
 
 logfile = open("logfile.log", "w")
 
@@ -40,13 +40,13 @@ for y in commands:
     print("Executing command " +  y + " for app \n")
     logfile.write("Executing command " + y + " for app \n")
     logfile.flush()
-    p = subprocess.Popen(y, shell=True, universal_newlines=True, stdout=None)
+    p = subprocess.Popen(y, shell=True, universal_newlines=True, stdout=logfile)
     ret_code = p.wait()
     logfile.flush()
 
     print(os.getcwd())
 
-    p = subprocess.Popen(jacocoReport, shell=True, universal_newlines=True, stdout=None)
+    p = subprocess.Popen(jacocoReport, shell=True, universal_newlines=True, stdout=logfile)
     ret_code = p.wait()
     logfile.flush()
 
@@ -76,6 +76,5 @@ for y in commands:
                             shutil.copytree(s, d, False, None)
                         else:
                             shutil.copy2(s, d)
-                
+
     os.chdir('../../../../..')
-        
